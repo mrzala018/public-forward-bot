@@ -12,6 +12,8 @@ class Config:
     SESSION = os.environ.get("SESSION", "")   
     TO_CHANNEL = int(os.environ.get("TO_CHANNEL", ""))
     BOT_USERNAME= os.environ.get("BOT_USERNAME", "")
+    PORT = environ.get("PORT", "8080")
+
 
 
 def LOGGER(name: str) -> logging.Logger:
