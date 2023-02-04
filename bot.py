@@ -3,6 +3,9 @@ from pyrogram import Client, __version__
 from config import Config
 from config import LOGGER
 
+from aiohttp import web
+from plugins import web_server
+
 from user import User
 import pyromod.listen
 
@@ -31,6 +34,10 @@ class Bot(Client):
         self.LOGGER(__name__).info(
             f"@{usr_bot_me.username}  started! "
         )
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
         self.USER, self.USER_ID = await User().start()
 
     async def stop(self, *args):
