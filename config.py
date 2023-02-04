@@ -1,4 +1,5 @@
 import os
+from os import environ
 import logging
 class Config:                                                                   
     API_ID = int(os.environ.get("API_ID", ""))
